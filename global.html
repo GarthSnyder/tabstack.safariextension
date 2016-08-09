@@ -13,9 +13,11 @@ var noDelayForNewTab = true
 // Singleton for the event used to move the current tab after delay
 var activationEvent = null;
 
-// Move the given tab to the first position
+// Move the given tab to the last position
 var moveTab = function(tab) {
-  tab.browserWindow.insertTab(tab, 0);
+  var win = tab.browserWindow;
+  var tabCount = win.tabs.count;
+  win.insertTab(tab, tabCount - 1);
 }
 
 // Listener for "activate" events
