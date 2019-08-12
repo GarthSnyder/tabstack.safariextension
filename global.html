@@ -15,9 +15,11 @@ var activationEvent = null;
 
 // Move the given tab to the last position
 var moveTab = function(tab) {
-  var win = tab.browserWindow;
-  var tabCount = win.tabs.count;
-  win.insertTab(tab, tabCount - 1);
+  if (!tab.url.match(/^https?:\/\/feedly.com/)) { // Skip pinned tab
+    var win = tab.browserWindow;
+    var tabCount = win.tabs.count;
+    win.insertTab(tab, tabCount - 1);
+  }
 }
 
 // Listener for "activate" events
